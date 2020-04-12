@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book page
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col offset-md-6">
+      <h2>{{ book.title }}</h2>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col">
+      <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="cover book">
+
+    </div>
+    <div class="col">
+      <br>
+      <h5>Author: {{ book.author }}</h5>
+      <p>Publication year: {{ book.year }}</p>
+      <p>isbn: {{ book.isbn }} </p>
+      <h6>Rating Bookbe: {{ data.avg }} <br> reviews:{{ data.counter }} </h6>
+      <h6>Rating Goodreads: {{ api['average_rating'] }} <br> reviews: {{ api['ratings_count'] }}</h6>
+      <br>
+
+      <form action="{{ url_for('book', isbn = book.isbn) }}" method="post">
+        {# book.isbn #}
+          <div class="col-sm-4">
+          <label for="input-1" class="control-label">Rate this book</label>
+          <select id=rate name="rating" class="form-control">
+            <option value="1">Very bad</option>
+            <option value="2">Poor</option>
+            <option value="3">Ok</option>
+            <option value="4">Good</option>
+            <option value="5" selected>Excellent</option>
+          </select>
+          </div>
+          <br>
+          <div class="panel-heading">
+              Tell us your experience
+          </div>
+          <div class="panel-body">
+              <textarea name="opinion" class="form-control" placeholder="make a review..." rows="3"></textarea>
+              <br>
+              <button type="submit" class="btn btn-info pull-right">Post</button>
+          </div>
+      </form>
+
+    </div>
+  </div>
+
+  <br>
+  <div class="row bootstrap snippets">
+    <div class="col">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Reviews:
+                </div>
+                <div class="panel-body">
+                    <ul class="media-list">
+
+                      {% for info in rev %}
+                        <li class="media">
+                            <a href="#" class="pull-left">
+                                <img style="width:100px; height: 100px" src="/static/img/user.png" alt="" class="img-circle">
+                            </a>
+                            <div class="media-body">
+                              <span class="text-muted pull-right">
+                                  <small class="text-muted">Rate: {{ info.review_rate }} </small>
+                              </span>
+                              <strong class="text-success"> {{ info.username }} </strong>
+                              <p>
+                                   {{ info.review }}
+                              </p>
+                            </div>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+{% endblock %}

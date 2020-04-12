@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+<style media="screen">
+  body {
+    background-image: url(/static/img/biblio.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+</style>
+<div class="container">
+  <div class="row justify-content-md-center" style="height: 80vh">
+    <div class="col-lg-5 my-auto">
+      <form action="/login" method="post">
+          <div class="form-group mx-auto">
+              <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+          </div>
+          <div class="form-group mx-auto">
+              <input class="form-control" name="password" placeholder="Password" type="password">
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary" type="submit">Log In</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+<style media="screen">
+  body {
+    background-image: url(/static/img/search2.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+</style>
+
+<div class="container">
+  <div class="row justify-content-md-center" style="height: 80vh">
+    <div class="col-lg-5 my-auto">
+      <form action="/search" class="form-group" method="post">
+        <div class="input-group">
+          <input class="form-control" type="text" name="word" placeholder="Search for title, author or ISBN"
+            aria-label="Search">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Go!</button>
+            </span>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
