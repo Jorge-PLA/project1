@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import csv
 import os
 
@@ -20,26 +19,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-=======
-import csv
-import os
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-
-engine = create_engine(os.getenv("DATABASE_URL"))
-db = scoped_session(sessionmaker(bind=engine))
-
-def main():
-    f = open("books.csv")
-    reader = csv.reader(f)
-    next(reader)
-    for isbn, title, author, year in reader:
-        db.execute("INSERT INTO books (isbn, title, author, year) VALUES (:isbn, :title, :author, :year)",
-                    {"isbn": isbn, "title": title, "author": author, "year":year})
-        #print(f"Added book of: {isbn} , {title} , {author} and {year}.")
-    db.commit()
-
-if __name__ == "__main__":
-    main()
->>>>>>> 30f02aba654f2da0ab34f8052ab86a92aea77267
