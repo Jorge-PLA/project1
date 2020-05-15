@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import os
 
 from flask import redirect, render_template, request, session
@@ -15,3 +16,22 @@ def login_required(f):
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
+=======
+import os
+
+from flask import redirect, render_template, request, session
+from functools import wraps
+
+def login_required(f):
+    """
+    Decorate routes to require login.
+
+    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
+>>>>>>> 30f02aba654f2da0ab34f8052ab86a92aea77267
